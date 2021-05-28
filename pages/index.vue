@@ -40,11 +40,17 @@ export default {
 </script>
 
 <style scoped>
-a { 
+a {
   text-decoration: none;
-  color:#333;
+  color: #333;
 }
-
+.intro {
+  -webkit-box-shadow: -2px 0px 7px 4px rgba(0, 0, 0, 0.47);
+  box-shadow: -2px 0px 7px 4px rgba(0, 0, 0, 0.47);
+  padding: 30px 30px 28px;
+  color: #fff;
+  background-image: url("~assets/img/intro-backgroung.jpg");
+}
 .intro-title {
   padding: 10px 0;
 }
