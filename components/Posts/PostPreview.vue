@@ -1,55 +1,77 @@
 <template>
-   <nuxt-link :to="'/posts/' + id">
-        <article class="post-preview">
-          <img class="post-thumbnail" :src="thumbnail" alt="img"/>
-          <div class="post-content">
-            <h1 class="title">{{title}}</h1>
-            <p class="prev-text">{{previewText}}</p>
-          </div>
-        </article>
-      </nuxt-link>
+  <nuxt-link :to="'/posts/' + id">
+    <article class="post-preview">
+      <div
+        class="post-thumbnail"
+        :style="{backgroundImage: 'url('+ thumbnail +')'}"
+      ></div>
+      <div class="post-content">
+        <h1>{{title}}</h1>
+        <p>{{previewText}}</p>
+      </div>
+    </article>
+  </nuxt-link>
 </template>
 <script>
+
 export default {
-  name: 'PostPreview',
+  name: "PostPreview",
   props: {
     id: {
       type: String,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     previewText: {
       type: String,
-      required: true
+      required: true,
     },
     thumbnail: {
       type: String,
-      required: true
-    }
-  }
-}
+      required: true,
+    },
+  },
+};
 </script>
 
 <style scoped>
-  img {
-    max-width: 260px;
-  }
-  .post-content {
-    padding: 30px;
-    -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-    box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
-  }
-  .post-thumbnail {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    height: 200px;
-    position: relative;
-    padding: 30px;  
+
+.post-preview {
+  box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, 0.35);
+  background-color: #fff;
+  width: 90%;
+  min-width: 320px;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+@media (min-width: 850px) {
+  .post-preview {
+    width: 400px;
+    margin: 10px;
+  }
+}
+
+.post-thumbnail {
+  width: 100%;
+  height: 250px;
+  background-position: center;
+  background-size: cover;
+}
+
+.post-content {
+  padding: 10px;
+  text-align: center;
+}
+
+a:hover .post-content,
+a:active .post-content {
+  background-color: #f2ea0d;
+}
 </style>
