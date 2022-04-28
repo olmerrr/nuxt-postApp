@@ -1,47 +1,72 @@
 <template>
-  <div class="admin-page">
-    <section class="new-post">
-      <button class="create-btn" @click="$router.push('/admin/new-post')">Create Post</button>
+  <div class="single-post-page">
+    <section class="post">
+      <h1>Title</h1>
+      <div class="post-details">
+        <div>Last updated on XX</div>
+        <div>Written by Name</div>
+      </div>
+      <p>Content</p>
+
     </section>
-    <section class="existing-posts">
-      <h1>Existing Posts</h1>
-      <post-list></post-list>
+    <section class="post-feedback">
+      <p>Let me know what you think about the post, send email to
+        <a href="mailto:testgmail@com.ua">My email</a>
+      </p>
     </section>
   </div>
 </template>
 
-<script>
-import PostList from "@/components/Posts/PostList.vue";
-export default {
-  components: { PostList },
-};
-</script>
-
 <style scoped>
-.admin-page {
-  padding: 20px 0;
-}
-.create-btn {
-  padding: 6px 14px;
-  background: #58bd95;
-  color: #fff;
-  text-transform: uppercase;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  font-weight: 700;
-  cursor: pointer;
-}
-.create-btn:hover {
-  transition: all .6s;
-  background: #75c4a4;
-  
-}
-.new-post {
+.single-post-page {
+  padding: 30px;
   text-align: center;
-  padding-bottom: 20px;
-  border-bottom: 2px solid #ccc;
+  box-sizing: border-box;
 }
-.existing-posts h1 {
-  text-align: center;
+
+.post {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .post {
+    width: 600px;
+    margin: auto;
+  }
+}
+
+.post-title {
+  margin: 0;
+}
+
+.post-details {
+  padding: 10px;
+  box-sizing: border-box;
+  border-bottom: 3px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .post-details {
+    flex-direction: row;
+  }
+}
+
+.post-detail {
+  color: rgb(88, 88, 88);
+  margin: 0 10px;
+}
+
+.post-feedback a {
+  color: red;
+  text-decoration: none;
+}
+
+.post-feedback a:hover,
+.post-feedback a:active {
+  color: salmon;
 }
 </style>
