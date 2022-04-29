@@ -4,19 +4,17 @@
       <h1 class="intro-title">Get the latest tech news!</h1>
     </section>
     <section class="featured-posts">
-    
-
-   <PostList/>
+      <PostList/>
     </section>
   </div>
 </template>
 
 <script>
-import PostList from '@/components/Posts/PostList.vue'
+import PostList from "@/components/Posts/PostList.vue";
 export default {
   components: {
-    PostList
-  }
+    PostList,
+  },
 };
 </script>
 
@@ -27,7 +25,7 @@ export default {
   background-position: center;
   background-size: cover;
   background-image: url("~assets/img/intro-backgroung.jpg");
-  box-shadow: 0px 0 3px 1px rgba(0,0,0,0.35);
+  box-shadow: 0px 0 3px 1px rgba(0, 0, 0, 0.35);
 }
 
 .intro h1 {
@@ -43,5 +41,4 @@ export default {
     font-size: 2rem;
   }
 }
-
 </style>

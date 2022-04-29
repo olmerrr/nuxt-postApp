@@ -1,72 +1,41 @@
 <template>
-  <div class="single-post-page">
-    <section class="post">
-      <h1>Title</h1>
-      <div class="post-details">
-        <div>Last updated on XX</div>
-        <div>Written by Name</div>
-      </div>
-      <p>Content</p>
-
+  <div class="admin-page">
+    <section class="new-post">
+      <button 
+        class="create-post"
+        @click="$router.push('/admin/new-post')"
+        >Create post
+      </button>
     </section>
-    <section class="post-feedback">
-      <p>Let me know what you think about the post, send email to
-        <a href="mailto:testgmail@com.ua">My email</a>
-      </p>
+    
+    <section class="existing-posts">
+      <h1>Existing posts</h1>
+      <PostList isAdmin/>
     </section>
   </div>
 </template>
+<script>
+import PostList from '@/components/Posts/PostList'
+
+export default {
+  components: {
+    PostList
+  }
+}
+</script>
 
 <style scoped>
-.single-post-page {
-  padding: 30px;
+  .admin-page {
+  padding: 20px;
+}
+
+.new-post {
   text-align: center;
-  box-sizing: border-box;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
 }
 
-.post {
-  width: 100%;
-}
-
-@media (min-width: 768px) {
-  .post {
-    width: 600px;
-    margin: auto;
-  }
-}
-
-.post-title {
-  margin: 0;
-}
-
-.post-details {
-  padding: 10px;
-  box-sizing: border-box;
-  border-bottom: 3px solid #ccc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .post-details {
-    flex-direction: row;
-  }
-}
-
-.post-detail {
-  color: rgb(88, 88, 88);
-  margin: 0 10px;
-}
-
-.post-feedback a {
-  color: red;
-  text-decoration: none;
-}
-
-.post-feedback a:hover,
-.post-feedback a:active {
-  color: salmon;
+.existing-posts h1 {
+  text-align: center;
 }
 </style>

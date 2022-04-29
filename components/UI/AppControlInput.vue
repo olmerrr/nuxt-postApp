@@ -44,7 +44,7 @@ export default {
 .input-control textarea {
   display: block;
   width: 100%;
-  box-sizing: border-box;
+  border-radius: 4px;
   font: inherit;
   border: 1px solid #ccc;
   padding: 5px;

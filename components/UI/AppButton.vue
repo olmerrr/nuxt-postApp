@@ -26,6 +26,10 @@ export default {
   padding: 5px;
   cursor: pointer;
   border: 1px solid black;
+  border-radius: 4px;
+  min-width: 90px;
+  min-height: 30px;
+  transition: background-color 300ms linear;
 }
 
 .button:hover,
