@@ -15,38 +15,11 @@ export default {
   components: {
     PostList,
   },
-  // data() {
-  //   return {
-  //     loadedPosts: [],
-  //   };
-  // },
-  asyncData(context, callback) {
-    setTimeout(() => {
-      // return {
-        callback(null, {  loadedPosts: [
-          {
-            id: "1",
-            title: "first post1",
-            previewText: "Some text",
-            thumbnail:
-              "https://media.vogue.de/photos/602e4631b9572024fb980cbe/4:3/w_1079,h_809,c_limit/e-girls-richchocolit.jpg",
-            "is-admin": "true",
-          },
-          {
-            id: "2",
-            title: "first post2",
-            previewText: "Some tex-2",
-            thumbnail:
-              "https://media.vogue.de/photos/602e4631b9572024fb980cbe/4:3/w_1079,h_809,c_limit/e-girls-richchocolit.jpg",
-            "is-admin": "true",
-          },
-        ],})
-      
-      // };
-    }, 1000);
+  computed: {
+    loadedPosts() {
+      return this.$store.getters.loadedPosts;
+    },
   },
-  // created() {
-  // }
 };
 </script>
 

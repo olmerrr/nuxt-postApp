@@ -54,6 +54,7 @@ export default {
   background-color: #fff;
   width: 90%;
   min-width: 320px;
+  text-align: center;
 }
 
 a {
@@ -70,9 +71,11 @@ a {
 
 .post-thumbnail {
   width: 100%;
+  max-width: 400px;
   height: 250px;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .post-content {
