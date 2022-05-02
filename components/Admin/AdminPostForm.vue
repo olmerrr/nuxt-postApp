@@ -53,11 +53,11 @@ export default {
   },
   methods: {
     onSave() {
-      // save
-      console.log(editedPost);
+      this.$emit('submit', this.editedPost);
+      this.$router.push('/blog');
     },
     onCancel() {
-      this.$router.push("/admin");
+      this.$router.push('/admin');
     },
   },
 };
