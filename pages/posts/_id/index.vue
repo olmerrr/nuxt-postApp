@@ -16,34 +16,19 @@
     </section>
   </div>
 </template>
+
 <script>
+import axios from 'axios';
+
 export default {
   asyncData(context) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          loadedPost: {
-            id: "01",
-            title: "Harry Potter (ID: " + context.route.params.id + ")",
-            author: "D. Rouling",
-            updatedDate: new Date(),
-            content:
-              "Nuxt supports traditional Vue patterns for loading data in your client-side app, such as fetching data in a component's mounted() hook. Universal apps, however, need to use Nuxt-specific hooks to be able to render data during server-side rendering. This allows your page to render with all of its required data present.",
-            previewText:
-              "Harry Potter is a series of seven fantasy novels written by British author J. K. Rowling. The novels chronicle the lives of a young wizard, Harry Potter...",
-            thumbnail:
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMXy0GdgD-3wLnbfYDprhv_NkvWx4agYFiLQ&usqp=CAU",
-            "is-admin": "true",
-          },
-        });
-      }, 1000);
-    })
-      .then((data) => {
-        return data;
+    return axios.get('https://nuxt-blog-d11a6-default-rtdb.firebaseio.com/posts/' + context.params.id + '.json')
+      .then(res => {
+        return {
+          loadedPost: res.data
+        }
       })
-      .carch((err) => {
-        console.log(new Error());
-      });
+      .catch((err) => context.error(err));
   },
 };
 </script>

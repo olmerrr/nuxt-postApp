@@ -16,18 +16,18 @@ import PostPreview from "@/components/Posts/PostPreview.vue";
 
 export default {
   components: {
-   PostPreview
+    PostPreview,
   },
   props: {
     isAdmin: {
       type: Boolean,
-      default: false
+      default: false,
     },
     posts: {
-    type: Array,
-    required: true
-  }
-  }
+      type: Array,
+      required: false,
+    },
+  },
 };
 </script>
 <style scoped>
@@ -41,5 +41,4 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 </style>
