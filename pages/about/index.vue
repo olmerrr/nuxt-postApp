@@ -17,7 +17,11 @@ Simply type in your subject and the Idea Generator will spin up a creative title
 </template>
 
 <script>
-export default {};
+export default {
+   head: {
+    title: 'About page',
+  }
+};
 </script>
 
 <style scoped>

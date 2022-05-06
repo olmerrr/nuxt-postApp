@@ -15,10 +15,9 @@ export default {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap' }
     ]
   },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    
+    '~/assets/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -38,5 +37,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-d11a6-default-rtdb.firebaseio.com/'
+  },
+
+  transition: {
+    name:'fade',
+    mode: 'out-in'
   }
 }
