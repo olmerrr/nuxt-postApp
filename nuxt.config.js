@@ -22,6 +22,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/plugins/core-components.js',
+    '~/plugins/date-filter.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -33,8 +35,12 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
-
+  axios: {
+    baseUrl:  process.env.BASE_URL || 'https://nuxt-blog-d11a6-default-rtdb.firebaseio.com/',
+    credentials: false
+  }, 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   },
@@ -44,7 +50,7 @@ export default {
   },
 
   transition: {
-    name:'fade',
+    name: 'fade',
     mode: 'out-in'
   }
 }

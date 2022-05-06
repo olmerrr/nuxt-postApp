@@ -10,7 +10,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 import AdminPostForm from '@/components/Admin/AdminPostForm.vue'
 
 export default {
@@ -18,13 +17,14 @@ export default {
     AdminPostForm
   },
  asyncData(context) {
-   return axios.get(process.env.baseUrl+'/posts/' + context.params.postId + '.json')
-   .then(res => {
+   return context.app.$axios
+   .$get('/posts/' + context.params.postId + '.json')
+    .then(data => {
      return {
-       loadedPosts: {...res.data, id: context.params.postId}
+       loadedPosts: {...data, id: context.params.postId}
      }
    })
-   .catch(err => context.error(err))
+    .catch(err => context.error(err))
  },
  methods:{
    onSubmitted(editedPost) {
