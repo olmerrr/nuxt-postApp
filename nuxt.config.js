@@ -35,13 +35,32 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    ['@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: "AIzaSyATp4cidSPLpSaYMLIUqI6OFtE74WgVaVk",
+          authDomain: "nuxt-blog-d11a6.firebaseapp.com",
+          databaseURL: "https://nuxt-blog-d11a6-default-rtdb.firebaseio.com",
+          projectId: "nuxt-blog-d11a6",
+          storageBucket: "nuxt-blog-d11a6.appspot.com",
+          messagingSenderId: "159494976249",
+          appId: "1:159494976249:web:5f113f54e64c5bcd312828"
+        },
+        services: {
+          auth: {
+            auth: true // Just as example. Can be any other service.
+          }
+        }
+      }
+
+    ]
   ],
   axios: {
-    baseUrl:  process.env.BASE_URL || 'https://nuxt-blog-d11a6-default-rtdb.firebaseio.com/',
+    baseUrl: process.env.BASE_URL || 'https://nuxt-blog-d11a6-default-rtdb.firebaseio.com/',
     credentials: false
-  }, 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  },
+
   build: {
   },
 

@@ -1,31 +1,62 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form>
-        <AppControlInput type="email">E-Mail Address</AppControlInput>
-        <AppControlInput type="password">Password</AppControlInput>
-        <AppButton type="submit">{{ isLogin ? 'Login' : 'Sign Up' }}</AppButton>
+      <form @submit.prevent="createUser">
+        <AppControlInput type="email" v-model="email"
+          >E-Mail Address</AppControlInput
+        >
+        <AppControlInput type="password" v-model="password"
+          >Password</AppControlInput
+        >
+        <AppButton type="submit">{{ isLogin ? "Login" : "Sign Up" }}</AppButton>
         <AppButton
           type="button"
           btn-style="inverted"
           style="margin-left: 10px"
-          @click="isLogin = !isLogin">Switch to {{ isLogin ? 'Signup' : 'Login' }}</AppButton>
+          @click="isLogin = !isLogin"
+          >Switch to {{ isLogin ? "Signup" : "Login" }}</AppButton
+        >
       </form>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: 'AdminAuthPage',
-  layout: 'admin',
+  name: "AdminAuthPage",
+  layout: "admin",
   data() {
     return {
-      isLogin: true
-    }
-  }
-}
+      isLogin: true,
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    async createUser() {
+      if (!this.isLogin) {
+        try {
+          await this.$fire.auth
+            .createUserWithEmailAndPassword(this.email, this.password)
+            .then((result) => console.log(result));
+          this.$router.push("/");
+        } catch (e) {
+          handleError(e);
+        }
+      } else {
+        try {
+          await this.$fire.auth.signInWithEmailAndPassword(
+            this.email,
+            this.password
+          );
+          this.$router.push("/admin");
+        } catch (e) {
+          handleError(e);
+        }
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -40,7 +71,6 @@ export default {
   width: 300px;
   margin: auto;
   padding: 10px;
-  box-sizing: border-box;
 }
 </style>
 
