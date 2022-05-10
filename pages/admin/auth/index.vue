@@ -1,7 +1,7 @@
 <template>
   <div class="admin-auth-page">
     <div class="auth-container">
-      <form @submit.prevent="createUser">
+      <form @submit.prevent="onSubmit">
         <AppControlInput type="email" v-model="email"
           >E-Mail Address</AppControlInput
         >
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
   name: "AdminAuthPage",
   layout: "admin",
@@ -33,28 +34,14 @@ export default {
     };
   },
   methods: {
-    async createUser() {
-      if (!this.isLogin) {
-        try {
-          await this.$fire.auth
-            .createUserWithEmailAndPassword(this.email, this.password)
-            .then((result) => console.log(result));
-          this.$router.push("/");
-        } catch (e) {
-          handleError(e);
-        }
-      } else {
-        try {
-          await this.$fire.auth.signInWithEmailAndPassword(
-            this.email,
-            this.password
-          );
-          this.$router.push("/admin");
-        } catch (e) {
-          handleError(e);
-        }
-      }
-    },
+    async onSubmit() {
+     this.$store.dispatch('authenticateUser', {
+       isLogin: this.isLogin,
+       email: this.email,
+       password: this.password
+     }
+     )
+     },
   },
 };
 </script>

@@ -3,7 +3,8 @@ import Vuex from 'vuex';
 const createStore = () => {
   return new Vuex.Store({
     state: {
-      loadedPosts: []
+      loadedPosts: [],
+      token: null
     },
 
     mutations: {
@@ -17,6 +18,10 @@ const createStore = () => {
         const postIndex = state.loadedPosts.findIndex(post => post.id === editedPost.id);
         state.loadedPosts[postIndex] = editedPost
       },
+    
+      setToken(state, token) {
+        state.token = token
+      }
     },
 
     actions: {
@@ -44,7 +49,7 @@ const createStore = () => {
         }
 
         return this.$axios
-        .$post('/posts.json', createdPost)
+        .$post('/posts.json?auth=' + vuexContext.state.token, createdPost)
           .then(data => {
             vuexContext.commit('addPost', { ...createdPost, id: data.name })
           })
@@ -54,17 +59,47 @@ const createStore = () => {
 
       editPost(vuexContext, editedPost) {
         return this.$axios
-        .$put('/posts/' + editedPost.id + '.json', editedPost)
+        .$put('/posts/' + editedPost.id + '.json?auth=' + vuexContext.state.token, editedPost)
           .then(res => {
             vuexContext.commit('editPost', editedPost)
           })
           .catch(err => console.log(err))
-      }
+      },
+      authenticateUser(vuexContext, authData) {
+        if (!authData.isLogin) {
+          try {
+             this.$fire.auth
+              .createUserWithEmailAndPassword(authData.email, 
+                authData.password)
+              .then((result) => {
+                vuexContext.commit('setToken', result.user.uid)
+              });
+          } catch (e) {
+            handleError(e);
+          }
+        } else {
+          try {
+             this.$fire.auth.signInWithEmailAndPassword(
+              authData.email,
+              authData.password
+            )
+            .then((result) => {
+              vuexContext.commit('setToken', result.user.uid)
+            });
+            this.$router.push("/admin");
+          } catch (e) {
+            handleError(e);
+          }
+        }
+      },
     },
 
     getters: {
       loadedPosts(state) {
         return state.loadedPosts;
+      },
+      isAuthenticated(state) {
+        return state.token != null;
       }
     }
   });
